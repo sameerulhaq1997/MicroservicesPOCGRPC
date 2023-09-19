@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "Inventory.Protos";
+
+
+message GetProductRequest {
+  string productId = 1;
+}
+
+
+message GetProductResponse {
+  string name = 1;
+  double price = 2;
+}
+
+message GetProductsRequest {
+}
+
+message GetProductsResponse {
+  repeated GetProductResponse products = 1;
+}
+
+service ProductProtoService {
+  rpc getProduct(GetProductRequest) returns (GetProductResponse);
+  rpc getProducts(GetProductsRequest) returns (GetProductsResponse);
+}

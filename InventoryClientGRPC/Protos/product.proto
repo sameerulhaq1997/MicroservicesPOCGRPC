@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+option csharp_namespace = "InventoryClientGRPC.Protos";
+
+
+message GetProductRequest {
+  string productId = 1;
+}
+
+message GetProductResponse {
+  string name = 1;
+  double price = 2;
+}
+
+service ProductProtoService {
+  rpc getProduct(GetProductRequest) returns (GetProductResponse);
+}
