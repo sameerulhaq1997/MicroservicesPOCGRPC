@@ -27,18 +27,14 @@ public partial class InventoryContext : DbContext
     {
         modelBuilder.Entity<Product>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__product__3213E83F70F56261");
-
-            entity.Property(e => e.Id).ValueGeneratedNever();
+            entity.HasKey(e => e.Id).HasName("PK__product__3213E83F8806215E");
         });
 
         modelBuilder.Entity<Sale>(entity =>
         {
-            entity.HasKey(e => e.Id).HasName("PK__product___3213E83F13AA260F");
+            entity.HasKey(e => e.Id).HasName("PK__sale__3213E83FAA0F3D58");
 
-            entity.Property(e => e.Id).ValueGeneratedNever();
-
-            entity.HasOne(d => d.Product).WithMany(p => p.Sales).HasConstraintName("FK__product_c__produ__398D8EEE");
+            entity.HasOne(d => d.Product).WithMany(p => p.Sales).HasConstraintName("FK__sale__product_id__4BAC3F29");
         });
 
         OnModelCreatingPartial(modelBuilder);
