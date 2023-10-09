@@ -36,7 +36,7 @@ namespace Inventory.GRPCServices
         {
             var tableName = "product";
             var enumParsed = Utils.ToEnum<EntityEnum>(tableName, EntityEnum.Product);
-            var operationEnum = OperationEnum.CREATE;
+            var operationEnum = OperationEnum.FETCH;
             var allDynamicTable = await Utils.dynamicTableSwitch(enumParsed, operationEnum, service);
             var getProductsResponse = new GetProductsResponse();
 
@@ -85,7 +85,7 @@ namespace Inventory.GRPCServices
                 case EntityEnum.Product:
                     if (operationEnum == OperationEnum.FETCH)
                     {
-                        allDynamicTable.Products = await service.LoadAllWithRelatedAsync<Product>();
+                        allDynamicTable.Products = await service.LoadAllWithRelatedAsync<Product>(x => x.Id, x => x.Price == 0);
                     }
                     else
                     {
@@ -95,7 +95,7 @@ namespace Inventory.GRPCServices
                 case EntityEnum.Sale:
                     if (operationEnum == OperationEnum.FETCH)
                     {
-                        allDynamicTable.Sales = await service.LoadAllWithRelatedAsync<Sale>();
+                        //allDynamicTable.Sales = await service.LoadAllWithRelatedAsync<Sale>();
                     }
                     else
                     {
